@@ -1,0 +1,16 @@
+#!/bin/bash
+# bin/compile <build-dir> <cache-dir>
+
+set -e
+
+APP_DIR=$1
+CACHE_DIR=$2
+DEPS_DIR=$3
+IDX=$4
+
+echo "Copying write-files.rb to profile.d directory"
+cd $(dirname $0)/..
+mkdir -p $DEPS_DIR/$IDX/profile.d
+cp bin/write-files.rb $DEPS_DIR/$IDX/profile.d
+echo "-----> Done."
+exit 0

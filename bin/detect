@@ -1,0 +1,4 @@
+#!/bin/sh
+# bin/detect <build-dir>
+
+exit 0
