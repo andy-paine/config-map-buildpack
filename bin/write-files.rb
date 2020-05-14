@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 require 'json'
+require 'base64'
 require 'fileutils'
 
 services = JSON.parse(ENV['VCAP_SERVICES'])['user-provided']
@@ -11,7 +12,13 @@ end.each do |service|
     file_path = file['path']
     FileUtils.mkdir_p File.dirname(file_path)
     File.open(file_path, 'w') do |f|
-      f.write file['content']
+      format = file.fetch('format', 'plaintext')
+      f.write case format
+      when "plaintext"
+        file['content']
+      when "base64"
+        Base64.decode64 file['content']
+      end
     end
   end
 end
