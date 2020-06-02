@@ -6,7 +6,7 @@ require 'fileutils'
 services = JSON.parse(ENV['VCAP_SERVICES'])['user-provided']
 
 services.select do |service|
-  service.has_key? 'files'
+  service.['type'] == 'files' and service.has_key? 'files'
 end.each do |service|
   service['files'].each do |file|
     file_path = file['path']

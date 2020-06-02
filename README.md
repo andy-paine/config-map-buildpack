@@ -4,11 +4,12 @@ Writes files based on a user provided service
 
 ## User Provided Service
 
-To use this buildpack, bind one or more user provided services (UPS) to the application. This buildpack will attempt to process any UPS containing a `files` key.
+To use this buildpack, bind one or more user provided services (UPS) to the application. This buildpack will attempt to process any UPS with a `type` field of `files`.
 
 The format of the UPS is as follows:
 ```json
 {
+  "type": "files",
   "files": [
     {
       "path": "<path/to/write/file/to>",
